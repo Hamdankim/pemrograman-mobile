@@ -34,6 +34,7 @@ NAMA: Hamdan Azizul Hakim
 4. Null safety adalah fitur Dart yang mencegah kita melakukan akses ke nilai null tanpa sengaja, sehingga menghindari error yang sering disebut null reference error (atau null pointer exception di bahasa lain).
 
     Ada 3 aturan null safety:
+   
     ![null-safety](img/null-safety.png)
 
     Late variables adalah variabel non-nullable yang nilainya bisa ditunda (diinisialisasi belakangan) atau dihitung hanya ketika pertama kali digunakan (lazy initialization).
