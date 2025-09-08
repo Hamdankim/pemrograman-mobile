@@ -1,4 +1,4 @@
-# Pemrograman Mobile - Week 2
+# Pemrograman Mobile - Week 3
 
 NIM: 2341720251
 
@@ -7,7 +7,7 @@ NAMA: Hamdan Azizul Hakim
 # Praktikum 1
 Langkah 1
 
-![langkah1](img/langkah1.png)
+![langkah1](img/p1_langkah1.png)
 
 Langkah 2
 
@@ -15,7 +15,7 @@ Kode pada langkah 1 error saat dieksekusi karena penulisan if else salah pada ba
 
 Langkah 3
 
-![langkah3](img/langkah3.png)
+![langkah3](img/p1_langkah3.png)
 
 Kode program diatas error karena variabel test pada kondisi if bukan merupakan boolean.
 
