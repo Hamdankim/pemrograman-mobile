@@ -1,78 +1,99 @@
 # Pemrograman Mobile - Week 3
 
-NIM: 2341720251
+**NIM:** 2341720251  
+**Nama:** Hamdan Azizul Hakim  
 
-NAMA: Hamdan Azizul Hakim
+---
 
-# Praktikum 1
-Langkah 1
+## Praktikum 1
 
-![langkah1](img/p1_langkah1.png)
+### Langkah 1
+![Langkah 1](img/p1_langkah1.png)
 
-Langkah 2
+---
 
-Kode pada langkah 1 error saat dieksekusi karena penulisan if else salah pada baris 4 dan baris 6 pada gambar.
+### Langkah 2
+- Kode pada langkah 1 **error** karena penulisan `if else` salah pada baris 4 dan baris 6.
 
-Langkah 3
+---
 
-![langkah3](img/p1_langkah3.png)
+### Langkah 3
+![Langkah 3](img/p1_langkah3.png)
 
-Kode program diatas error karena variabel test pada kondisi if bukan merupakan boolean.
+- Kode program error karena variabel `test` pada kondisi `if` bukan merupakan **boolean**.  
+- Berikut perbaikannya:  
 
-Berikut perbaikannya:
+![Perbaikan Langkah 3](img/p3_fix_langkah3.png)
 
-![](img/fix_langkah3.png)
+---
 
-# Praktikum 2
+## Praktikum 2
 
-Langkah 1
+### Langkah 1
+![Langkah 1](img/p2_langkah1.png)
 
-![](img/p2_langkah1.png)
+---
 
-Langkah 2
+### Langkah 2
+- Kode pada langkah 1 error karena variabel `counter` **belum diinisialisasi**.  
+- Berikut perbaikannya:  
 
-Kode pada langkah 1 error, karena variabel counter belum diinisialisasi.
+![Perbaikan Langkah 2](img/p2_langkah2.png)
 
-Berikut perbaikkannya:
+---
 
-![](img/p2_langkah2.png)
+### Langkah 3
+- Pada langkah 3 kode program **tidak error** karena variabel `counter` sudah diinisialisasi di awal.  
 
-Langkah 3
+![Langkah 3](img/p2_langkah3.png)
 
-Pada langkah 3 kode program tidak error karena variabel counter sudah diinisialisasi diawal.
+---
 
-![](img/p2_langkah3.png)
+## Praktikum 3
 
-# Praktikum 3
+### Langkah 1
+![Langkah 1](img/p3_langkah1.png)
 
-Langkah 1
+---
 
-![](img/p3_langkah1.png)
+### Langkah 2
+- Pada kode program langkah 1 error karena:  
+  - Variabel belum diinisialisasi.  
+  - Nama variabel tidak konsisten.  
+  - Iterasi tidak berjalan.  
 
-Langkah 2
+- Berikut perbaikannya:  
 
-Pada kode program langkah 1 error, karena variabel belum diinisialisasi, kemudian nama variabel tidak konsisten, iterasi tidak berjalan.
+![Perbaikan Langkah 2](img/p3_langkah2.png)
 
-Berikut perbaikannya:
+---
 
-![](img/p3_langkah2.png)
+### Langkah 3
+- Pada langkah 3:  
+  - Penulisan `if else` salah.  
+  - Nama variabel tidak konsisten.  
+  - Operator logika `else if` saya ubah menjadi `&& (and)` agar terdapat output.  
+  - Jika menggunakan `|| (or)` maka kondisi selalu `true` sehingga iterasi akan terus lanjut.  
 
-Langkah 3
+![Perbaikan Langkah 3](img/p3_fix_langkah3.png)
 
-Pada langkah 3 penulisan if else salah, penulisan variabel tidak konsisten, dan pada operator logika else if saya ubah menjadi && (and) agar terdapat output, jika menggunakan || (or) maka kondisi bersifat true dan akan terus continue atau melangkah ke iterasi selanjutnya.
+---
 
-![](img/p3_fix_langkah3.png)
+## Tugas Praktikum
 
-# Tugas Praktikum
+**Soal:**  
+Buatlah program yang dapat menampilkan **bilangan prima dari 0 sampai 201** menggunakan Dart.  
+Jika bilangan prima ditemukan, tampilkan **nama lengkap** dan **NIM** Anda.
 
-Buatlah sebuah program yang dapat menampilkan bilangan prima dari angka 0 sampai 201 menggunakan Dart. Ketika bilangan prima ditemukan, maka tampilkan nama lengkap dan NIM Anda.
+---
 
-Kode Program
+### Kode Program
+![Kode Program](img/tugas_praktikum1.png)
 
-![](img/tugas_praktikum1.png)
+---
 
-Output
+### Output
+![Output 1](img/tugas_praktikum3.png)  
+![Output 2](img/tugas_praktikum2.png)
 
-![](img/tugas_praktikum3.png)
-
-![](img/tugas_praktikum2.png)
+---

@@ -1,42 +1,57 @@
 # Pemrograman Mobile - Week 2
 
-NIM: 2341720251
+**NIM:** 2341720251  
+**Nama:** Hamdan Azizul Hakim  
 
-NAMA: Hamdan Azizul Hakim
+---
 
-# Tugas Praktikum
+## Tugas Praktikum
 
-1. Modifikasi kode
+### 1. Modifikasi Kode
+![Tugas 1](img/tugas1.png)
 
-![ss tugas1](img/tugas1.png)
+---
 
-2. Framework Flutter menggunakan bahasa pemrograman dart, oleh karena itu kita perlu memahami dasar dari bahasa Dart itu sendiri agar memudahkan kita dalam memahami pengembangan framework Flutter.
+### 2. Flutter & Dart
+- **Flutter** menggunakan bahasa pemrograman **Dart**.  
+- Karena itu, memahami dasar **Dart** penting agar lebih mudah memahami pengembangan dengan **Flutter**.
 
-3. Dart adalah bahasa pemrograman utama yang digunakan dalam framework Flutter. Dart termasuk bahasa modern dengan sifat lintas platform dan tujuan umum, sehingga dapat digunakan di berbagai sistem dan perangkat.
+---
 
-    Fitur penting Dart:
+### 3. Bahasa Pemrograman Dart
+Dart adalah bahasa utama untuk framework Flutter. Dart termasuk bahasa modern, lintas platform, dan general-purpose sehingga bisa digunakan di berbagai sistem.  
 
-    + Productive tooling → memiliki alat bantu (tools) yang lengkap sehingga memudahkan proses pengembangan.
-    + Garbage collection → otomatis mengelola memori dengan membersihkan data yang tidak digunakan.
-    + Type annotations → memungkinkan penulisan tipe data agar kode lebih jelas dan mudah dipahami.
-    + Statically typed → kesalahan tipe data dapat terdeteksi saat proses kompilasi, bukan saat program berjalan.
-    + Portability → dapat dijalankan di berbagai platform tanpa banyak perubahan.
+#### Fitur Penting Dart
+- **Productive tooling** → memiliki tools lengkap untuk memudahkan pengembangan.  
+- **Garbage collection** → otomatis membersihkan data yang tidak digunakan.  
+- **Type annotations** → mendukung tipe data eksplisit agar kode lebih jelas.  
+- **Statically typed** → kesalahan tipe data terdeteksi saat kompilasi, bukan runtime.  
+- **Portability** → kode dapat dijalankan di berbagai platform.  
 
-    Alasan Flutter menggunakan Dart: karena Dart selalu dikembangkan dengan fitur-fitur baru, membuatnya tetap relevan, fleksibel, dan cocok untuk kebutuhan aplikasi modern.
+#### Alasan Flutter menggunakan Dart
+- Terus dikembangkan dengan fitur baru.  
+- Relevan, fleksibel, dan cocok untuk aplikasi modern.  
 
-    Mode eksekusi Dart:
+#### Mode Eksekusi Dart
+- **Just-In-Time (JIT)** → kompilasi saat runtime, cocok untuk pengembangan karena lebih cepat melihat perubahan.  
+- **Ahead-Of-Time (AOT)** → kompilasi sebelum runtime, performa lebih cepat & efisien saat aplikasi dipublikasikan.  
 
-    - Just-In-Time (JIT) → kompilasi dilakukan saat program dijalankan, cocok untuk pengembangan karena lebih cepat melakukan perubahan.
-    - Ahead-Of-Time (AOT) → kompilasi dilakukan sebelum program dijalankan, menghasilkan performa lebih cepat dan efisien saat aplikasi dipublikasikan.
+#### 🏷 Paradigma Dart
+- Dart adalah **Object-Oriented (OO)**, mendukung konsep **class, object, inheritance, encapsulation, polymorphism**.
 
-    Paradigma Dart: dirancang sebagai Object-Oriented (OO), sehingga mendukung konsep kelas, objek, pewarisan, dan prinsip OOP lainnya.
+---
 
-4. Null safety adalah fitur Dart yang mencegah kita melakukan akses ke nilai null tanpa sengaja, sehingga menghindari error yang sering disebut null reference error (atau null pointer exception di bahasa lain).
+### 4. Null Safety & Late Variables
+#### Null Safety
+Fitur Dart untuk mencegah **null reference error** (null pointer exception).  
 
-    Ada 3 aturan null safety:
-   
-    ![null-safety](img/null-safety.png)
+Tiga aturan null safety:  
+![Null Safety](img/null-safety.png)
 
-    Late variables adalah variabel non-nullable yang nilainya bisa ditunda (diinisialisasi belakangan) atau dihitung hanya ketika pertama kali digunakan (lazy initialization).
+#### Late Variables
+- Variabel **non-nullable** yang nilainya bisa diinisialisasi belakangan.  
+- Mendukung **lazy initialization** (nilai dihitung saat pertama kali digunakan).  
 
-    ![late-variables](img/late-variables.png)
+![Late Variables](img/late-variables.png)
+
+---
