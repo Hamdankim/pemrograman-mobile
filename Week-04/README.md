@@ -79,8 +79,10 @@
 
 ### Langkah 2
 - Kesalahan pada kode print(list1) karena list1 belum pernah dideklarasikan.
+
 ![Langkah2](img/p4_langkah2.png)
 ![Langkah2.1](img/p4_langkah2.1.png)
+
 - Setelah perbaikan maka output seperti diatas, untuk variabel list diisi manual, kemudian variabel list2 diisi menggunakan spread operator dengan menambahkan elemen list ke list2.
 
 ---
@@ -88,6 +90,7 @@
 ### Langkah 3
 ![Langkah3](img/p4_langkah3.png)
 ![Langkah3.1](img/p4_langkah3.1.png)
+
 - Kesalahan pada variabel list1 yang belum dideklarasikan. Setelah perbaikan, percobaan diatas yaitu deklarasi variabel list3 menggunakan spread operator dengan tanda tanya, tanda tanya digunakan untuk menghindari error karena variabel list1 yang akan dimasukkan ke list3 terdapat nilai null.
 
 ---
@@ -95,9 +98,11 @@
 ### Langkah 4
 - Pada percobaan langkah 4 terjadi error karena variabel promoActive belum dideklarasikan.
 - Variabel promoActive jika true
+
 ![Langkah4.1](img/p4_langkah4.1.png)
 ![Langkah4.2](img/p4_langkah4.2.png)
 - Variabel promoActive jika true
+
 ![Langkah4.3](img/p4_langkah4.3.png)
 ![Langkah4.4](img/p4_langkah4.4.png)
 
@@ -105,10 +110,14 @@
 
 ### Langkah 5
 - Sama seperti sebelumnya error dikarenakan variabel yang belum didefinisikan.
+
 - Variabel login kondisi 'Manager'
+
 ![Langkah5.1](img/p4_langkah5.1.png)
 ![Langkah5.2](img/p4_langkah5.2.png)
+
 - Variabel login kondisi 'Bos'
+
 ![Langkah5.3](img/p4_langkah5.3.png)
 ![Langkah5.4](img/p4_langkah5.4.png)
 
@@ -116,8 +125,10 @@
 
 ### Langkah 6
 - Tidak terjadi error, pada percobaan ini kita mengisi variabel listOfStrings dengan int dari variabel listOfInts menggunakan perulangan for.
+
 ![Langkah6.1](img/p4_langkah6.1.png)
 ![Langkah6.2](img/p4_langkah6.2.png)
+
 - Manfaat Collection For
     - Mempermudah pembuatan list berdasarkan loop.
 
@@ -135,15 +146,18 @@
 ---
 
 ### Langkah 2
-- Error hanya pada titik koma setelah print(record)     
+- Error hanya pada titik koma setelah print(record)
+
 ![Langkah2](img/p5_langkah2.png)
 ![Langkah2.1](img/p5_langkah2.1.png)
+
 - Diatas merupakan record yang bisa diakses menggunakan Positional field dan Named field.
 
 ---
 
 ### Langkah 3
 - Tidak terjadi error, karena fungsi juga tidak dipanggil di main.
+
 ![Langkah3.1](img/p5_langkah3.1.png)
 ![Langkah3.2](img/p5_langkah3.2.png)
 ![Langkah3.3](img/p5_langkah3.3.png)
@@ -152,6 +166,7 @@
 
 ### Langkah 4
 - Error karena record mahasiswa belum diinisialisasi, berikut perbaikannya:
+
 ![Langkah4.1](img/p5_langkah4.1.png)
 ![Langkah4.2](img/p5_langkah4.2.png)
 
@@ -159,9 +174,12 @@
 
 ### Langkah 5
 - Tidak terjadi error, langkah 5 
+
 ![Langkah5.1](img/p5_langkah5.1.png)
 ![Langkah5.2](img/p5_langkah5.2.png)
+
 - Gantilah salah satu isi record dengan nama dan NIM Anda
+
 ![Langkah5.3](img/p5_langkah5.3.png)
 ![Langkah5.4](img/p5_langkah5.4.png)
 
