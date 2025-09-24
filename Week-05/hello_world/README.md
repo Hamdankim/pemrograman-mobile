@@ -7,36 +7,48 @@
 
 ## Praktikum 1
 
-![p1](images/p1.png)
+<img src="images/p1.png" width="500">
 
 ---
 
 ## Praktikum 2
 
-![p2_1](images/p2_1.jpg)
+<img src="images/p2_1.jpg " width="300" height="600">
 
-![p2_2](images/p2_2.png)
+<img src="images/p2_2.png " width="500">
+
 
 ---
 
 ## Praktikum 3
 
-![p3_1](images/p3_1.png)
-
-![p3_2](images/p3_2.png)
+<img src="images/p3_1.png " width="500">
+<img src="images/p3_2.png " width="500">
 
 ---
 
 ## Praktikum 4
 
-![p4_1](images/p4_1.png)
-![p4_2](images/p4_2.png)
-![p4_3](images/p4_3.png)
-![p4_4](images/p4_4.png)
-![p4_5](images/p4_5.png)
-![p4_6](images/p4_6.png)
-![p4_7](images/p4_7.png)
+  <img src="images/p4_1.png" width="500">
+  <img src="images/p4_2.png" width="500">
+  <img src="images/p4_3.png" width="500">
+  <img src="images/p4_4.png" width="500">
+  <img src="images/p4_5.png" width="500">
+  <img src="images/p4_6.png" width="500">
+  <img src="images/p4_7.png" width="500">
 
 ---
 
 ## Praktikum 5
+<img src="images/p5_1.png" width="500">
+<img src="images/p5_2.png" width="500">
+<img src="images/p5_3.png" width="500">
+<img src="images/p5_3a.png" width="300" height="500">
+<img src="images/p5_3b.png" width="300" height="500">
+<img src="images/p5_3c.jpg" width="300" height="500">
+<img src="images/p5_3d.jpg" width="300" height="500">
+<img src="images/p5_4.png" width="300" height="500">
+<img src="images/p5_4a.jpg" width="300" height="500">
+<img src="images/p5_5.jpg" width="300" height="500">
+<img src="images/p5_6.png" width="300" height="500">
+<img src="images/p5_6a.jpg" width="300" height="500">
