@@ -39,18 +39,19 @@ Selanjutnya pada praktikum ini kita coba langsung run project flutter dengan out
 
   Percobaan diatas merupakan text widget yang hanya menampilkan text pada aplikasi.
 
-  <img src="images/p4_2.png" width="500">
+  <p align="center">
+  <img src="images/p4_2.png" width="500" height="250">
 
+  <img src="images/p4_3.png" width="500" height="250">
 
-  <img src="images/p4_3.png" width="500">
+  <img src="images/p4_4.png" width="500" height="250">
 
-  <img src="images/p4_4.png" width="500">
+  <img src="images/p4_5.png" width="500" height="250">
 
-  <img src="images/p4_5.png" width="500">
+  <img src="images/p4_6.png" width="500" height="250">
 
-  <img src="images/p4_6.png" width="500">
-
-  <img src="images/p4_7.png" width="500">
+  <img src="images/p4_7.png" width="500" height="250">
+  </p>
 
   Percobaan selanjutnya kita menampilkan logo POLINEMA pada aplikasi, pertama kita membuat file image_widget dari turunan StatelessWidget kemudian kita override widget dengan mereturn gambar yang diambil dari folder assets, selanjutnya kita juga lakukan penyesuaian asset pada file pubspec.yaml dan juga menambahkan file logo POLINEMA pada folder assets. Setelah itu, pada main kita ubah const menjadi MyImageWidget sesuai dengan class yang ada di file image_widget. Terakhir kita lakukan debugging sehingga logo POLINEMA muncul pada aplikasi kita.
 
@@ -66,30 +67,32 @@ Pada bagian ini diperkenalkan widget dari iOS yaitu CupertinoButton dan Cupertin
 
 Floating Action Button adalah salah satu button khas Material Design yang biasanya digunakan untuk aksi utama dalam sebuah halaman. Praktikum ini menekankan penggunaan FAB dengan ikon tertentu dan warna khusus, sehingga mahasiswa memahami cara menambahkan interaksi yang menonjol pada antarmuka aplikasi.
 
-<img src="images/p5_3.png" width="500">
-
-<img src="images/p5_3a.png" width="300" height="500">
-
-<img src="images/p5_3b.png" width="300" height="500">
-
-<img src="images/p5_3c.jpg" width="300" height="500">
-
-<img src="images/p5_3d.jpg" width="300" height="500">
+<p align="center">
+  <img src="images/p5_3.png" width="500" height="500">
+  <img src="images/p5_3a.png" width="300" height="500">
+  <img src="images/p5_3b.png" width="300" height="500">
+  <img src="images/p5_3c.jpg" width="300" height="500">
+  <img src="images/p5_3d.jpg" width="300" height="500">
+</p>
 
 Scaffold berfungsi sebagai kerangka utama dalam membangun antarmuka berbasis Material Design. Komponen ini mempermudah penataan elemen seperti AppBar, body, BottomAppBar, dan FloatingActionButton. Dengan Scaffold, struktur aplikasi menjadi lebih konsisten dan mengikuti standar desain modern.
 
+  <p align="center">
 <img src="images/p5_4.png" width="300" height="500">
 
 <img src="images/p5_4a.jpg" width="300" height="500">
+</p>
 
 Dialog digunakan untuk memberikan pesan interaktif kepada pengguna, baik berupa informasi maupun konfirmasi. Flutter menyediakan AlertDialog dan SimpleDialog untuk kebutuhan tersebut. Dalam praktikum ini, mahasiswa belajar menampilkan AlertDialog sederhana dengan tombol aksi yang bisa menutup dialog.
 
 <img src="images/p5_5.jpg" width="300" height="500">
 
 Flutter mendukung berbagai widget input agar pengguna dapat memberikan data atau memilih opsi tertentu. Contohnya TextField untuk memasukkan teks, Checkbox dan RadioButton untuk pilihan, serta Slider dan Switch untuk pengaturan nilai. Dengan memahami widget ini, aplikasi dapat lebih interaktif dan fungsional.
-
+ 
+<p align="center">
 <img src="images/p5_6.png" width="300" height="500">
 
 <img src="images/p5_6a.jpg" width="300" height="500">
+</p>
 
 Selain input teks dan pilihan sederhana, Flutter juga menyediakan Date & Time Picker untuk memilih tanggal maupun waktu. Widget ini memudahkan pengguna dalam memasukkan data temporal dengan format yang konsisten. Implementasi pada praktikum menampilkan tanggal terpilih dan membuktikan bahwa Flutter mampu mengelola input yang lebih kompleks.
