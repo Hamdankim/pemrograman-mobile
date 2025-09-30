@@ -11,6 +11,7 @@ void main(List<String> args) {
   print(list3.length);
 
   var promoActive = false;
+  // ignore: dead_code
   var nav = ['Home', 'Furniture', 'Plants', if (promoActive) 'Outlet'];
   print(nav);
 
