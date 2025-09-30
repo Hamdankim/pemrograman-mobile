@@ -36,7 +36,7 @@ Dart adalah bahasa utama untuk framework Flutter. Dart termasuk bahasa modern, l
 - **Just-In-Time (JIT)** → kompilasi saat runtime, cocok untuk pengembangan karena lebih cepat melihat perubahan.  
 - **Ahead-Of-Time (AOT)** → kompilasi sebelum runtime, performa lebih cepat & efisien saat aplikasi dipublikasikan.  
 
-#### 🏷 Paradigma Dart
+#### Paradigma Dart
 - Dart adalah **Object-Oriented (OO)**, mendukung konsep **class, object, inheritance, encapsulation, polymorphism**.
 
 ---
