@@ -16,3 +16,9 @@ Kemudian kita coba akses URL dengan ID baru yang telah kita tambahkan. Maka akan
 
 ![](images/W11_Soal2.png)
 
+Langkah selanjutnya kita tambahkan kode untuk menampilkan data JSON diatas ke dalam aplikasi books kita, pada kode tambahan terdapat method **substring** yang berfungsi untuk membatasi panjang data yang ditampilkan di UI aplikasi books dan juga method **catchError** yang berfungsi untuk mengambil pesan error jika terdapat error.
+
+Berikut hasil output aplikasi books pada praktikum 1:
+
+![](images/W11_Soal3.gif)
+
