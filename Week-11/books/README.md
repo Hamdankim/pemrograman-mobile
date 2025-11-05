@@ -1,16 +1,18 @@
-# books
+# Pemrograman Mobile – Week 11
 
-A new Flutter project.
+**Nama:** Hamdan Azizul Hakim <br>
+**NIM:** 2341720251 <br>
+**Kelas:** TI-3G
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Praktikum 1 – Mengunduh Data dari Web Service (API)
 
-A few resources to get you started if this is your first Flutter project:
+Pada Praktikum ini pertama kita membuat project flutter baru dengan nama books, setelah itu kita tambahkan dependensi baru yaitu http yang berfungsi untuk menghubungkan flutter ke jaringan HTTP.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Setelah itu kita lakukan perubahan pada kode main dan juga menambahkan nama kita pada title. Selanjutnya kita cari buku favorit di Google Books, kemudian kita salin ID buku tersebut ke path yang ada di kode main.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Kemudian kita coba akses URL dengan ID baru yang telah kita tambahkan. Maka akan tampil data JSON seperti dibawah:
+
+![](images/W11_Soal2.png)
+
