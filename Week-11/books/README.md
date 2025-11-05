@@ -22,3 +22,12 @@ Berikut hasil output aplikasi books pada praktikum 1:
 
 ![](images/W11_Soal3.gif)
 
+## Praktikum 2 – Menggunakan await/async untuk menghindari callbacks
+
+Pada Praktikum 2, langkah 1 kita tambahkan tiga method di dalam class `_FuturePageState`. Kode di atas berisi tiga fungsi asinkron di Dart `returnOneAsync()`, `returnTwoAsync()`, dan `returnThreeAsync()` yang masing-masing menunggu selama **3 detik** menggunakan `Future.delayed()` sebelum mengembalikan nilai **1**, **2**, dan **3**. Karena menggunakan kata kunci `async` dan `await`, eksekusi setiap fungsi tidak langsung menghasilkan nilai, melainkan **mengembalikan objek `Future<int>`** yang akan berisi hasilnya setelah penundaan selesai. Dengan kata lain, fungsi-fungsi ini mensimulasikan proses yang memerlukan waktu (seperti mengambil data dari internet) tanpa menghentikan eksekusi program utama.
+
+Pada langkah 2, kita membuat method `count()` yang bersifat **asinkron** untuk menjalankan tiga fungsi sebelumnya (`returnOneAsync()`, `returnTwoAsync()`, dan `returnThreeAsync()`) secara **berurutan**. Fungsi ini menggunakan `await` agar setiap pemanggilan menunggu hasil dari fungsi sebelumnya sebelum melanjutkan ke berikutnya, sehingga prosesnya berjalan berantai, total waktu tunda menjadi sekitar 9 detik (3 detik tiap fungsi). Nilai yang dikembalikan dari ketiga fungsi tersebut dijumlahkan dan disimpan ke variabel `total`. Setelah perhitungan selesai, `setState()` dipanggil untuk memperbarui nilai variabel `result` di UI, sehingga tampilan aplikasi ikut berubah sesuai hasil total yang baru.
+
+Berikut hasil output pada praktikum 2:
+
+![](images/W11_Soal4.gif)
