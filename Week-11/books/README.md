@@ -61,3 +61,5 @@ Pada Praktikum 4, kita memperkenalkan penggunaan **`FutureGroup`** untuk menjala
 Berikut output pada praktikum diatas:
 
 <img src="images/W11_Soal7.gif" width="300">
+
+Perbedaan antara penggunaan `FutureGroup` dan `Future.wait` terletak pada **cara pengelolaan dan fleksibilitas penambahan `Future`**. Pada `FutureGroup`, kita bisa menambahkan `Future` satu per satu, menutup grup saat semua `Future` telah ditambahkan, lalu menunggu semua selesai, sehingga lebih fleksibel jika jumlah atau sumber `Future` tidak diketahui di awal. Sedangkan `Future.wait` menerima **list `Future` secara langsung** dan menunggu semuanya selesai secara bersamaan, sehingga lebih sederhana dan cocok ketika semua `Future` sudah pasti dan bisa langsung dikumpulkan. Secara eksekusi, keduanya menjalankan semua `Future` **bersamaan (concurrent)**, tetapi `Future.wait` lebih ringkas, sementara `FutureGroup` memberikan kontrol lebih terhadap proses penambahan dan penyelesaian `Future` secara dinamis.

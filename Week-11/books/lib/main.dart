@@ -105,7 +105,7 @@ class _FuturePageState extends State<FuturePage> {
 
   calculate2() async {
     try {
-      await new Future.delayed(const Duration(seconds: 5));
+      await Future.delayed(const Duration(seconds: 5));
       completer.complete(42);
     } catch (_) {
       completer.completeError({});
@@ -113,20 +113,26 @@ class _FuturePageState extends State<FuturePage> {
   }
 
   void returnFG() {
-    FutureGroup<int> futureGroup = FutureGroup<int>();
-    futureGroup.add(returnOneAsync());
-    futureGroup.add(returnTwoAsync());
-    futureGroup.add(returnThreeAsync());
-    futureGroup.close();
+    // FutureGroup<int> futureGroup = FutureGroup<int>();
+    // futureGroup.add(returnOneAsync());
+    // futureGroup.add(returnTwoAsync());
+    // futureGroup.add(returnThreeAsync());
+    // futureGroup.close();
 
-    futureGroup.future.then((List<int> value) {
-      int total = 0;
-      for (var element in value) {
-        total += element;
-      }
-      setState(() {
-        result = total.toString();
-      });
+    final futures = Future.wait<int>([
+      returnOneAsync(),
+      returnTwoAsync(),
+      returnThreeAsync(),
+    ]);
+
+    // futureGroup.future.then((List<int> value) {
+    int total = 0;
+    for (var element in futures as List<int>) {
+      total += element;
+    }
+    setState(() {
+      result = total.toString();
     });
+    // });
   }
 }
