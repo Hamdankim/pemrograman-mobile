@@ -86,4 +86,20 @@ Pertama kita membuat file `geolocation.dart` yang menampilkan lokasi pengguna me
 
 Berikut hasil output dari praktikum diatas:
 
-<img src="images/W11_Soal12.gif" width="300"> <br>
+<img src="images/W11_Soal12.gif" width="300">
+
+---
+
+## Praktikum 7 - Manajemen Future dengan FutureBuilder
+
+Pada UI praktikum ini dengan sebelumnya terdapat perbedaan, menggunakan FutureBuilder lebih efisien, clean, dan reactive dengan Future bersama UI.
+
+Berikut hasil outputnya:
+
+<img src="images/W11_Soal13.gif" width="300"> 
+
+Setelah ditambah handling error tidak ada perbedaan UI dengan sebelumnya, jika memang terdapat error maka UI akan berbeda.
+
+Berikut hasil outputnya:
+
+<img src="images/W11_Soal14.gif" width="300"> 
