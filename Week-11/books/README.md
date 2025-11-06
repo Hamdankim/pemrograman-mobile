@@ -63,3 +63,20 @@ Berikut output pada praktikum diatas:
 <img src="images/W11_Soal7.gif" width="300">
 
 Perbedaan antara penggunaan `FutureGroup` dan `Future.wait` terletak pada **cara pengelolaan dan fleksibilitas penambahan `Future`**. Pada `FutureGroup`, kita bisa menambahkan `Future` satu per satu, menutup grup saat semua `Future` telah ditambahkan, lalu menunggu semua selesai, sehingga lebih fleksibel jika jumlah atau sumber `Future` tidak diketahui di awal. Sedangkan `Future.wait` menerima **list `Future` secara langsung** dan menunggu semuanya selesai secara bersamaan, sehingga lebih sederhana dan cocok ketika semua `Future` sudah pasti dan bisa langsung dikumpulkan. Secara eksekusi, keduanya menjalankan semua `Future` **bersamaan (concurrent)**, tetapi `Future.wait` lebih ringkas, sementara `FutureGroup` memberikan kontrol lebih terhadap proses penambahan dan penyelesaian `Future` secara dinamis.
+
+---
+
+## Praktikum 5 – Menangani Respon Error pada Async Code
+
+Pada praktikum ini kita melakukan cara untuk menangani operasi asinkron yang menghasilkan error menggunakan `Future` di Flutter. Fungsi `returnError()` mensimulasikan proses yang memerlukan waktu dua detik lalu melemparkan exception dengan pesan “Something terrible happened!”. Saat tombol **GO!** ditekan, fungsi ini dipanggil, dan hasilnya ditangani dengan tiga blok: `.then()` untuk menangani keberhasilan (mengubah `result` menjadi "Success"), `.catchError()` untuk menangani kegagalan (menyimpan pesan error ke dalam `result`), dan `.whenComplete()` yang selalu dijalankan di akhir proses, baik berhasil maupun gagal (di sini hanya mencetak teks “Complete” di konsol). Dengan demikian, kode ini mendemonstrasikan alur lengkap penanganan `Future` beserta error handling dan tindakan akhir.
+
+Berikut hasil output dari praktikum diatas:
+
+<img src="images/W11_Soal9.gif" width="300"> <br>
+
+<img src="images/W11_Soal9a.png" width="300">
+
+Langkah selanjutnya kita menambahkan fungsi `handleError`. Perbedaannya terletak pada cara menangani error dari proses asinkron, di mana versi yang menggunakan `.then()`, `.catchError()`, dan `.whenComplete()` memanfaatkan **callback chaining** untuk menangani hasil, error, dan tindakan akhir dari `Future`, sedangkan versi dengan `try–catch–finally` menangani semuanya di dalam satu blok `async` secara lebih terstruktur dan mudah dibaca. Dengan `try–catch`, error ditangkap langsung seperti pada pemrograman sinkron, sementara `finally` tetap dijalankan setelah proses selesai, baik berhasil maupun gagal. Pendekatan ini umumnya lebih jelas dan direkomendasikan ketika terdapat banyak operasi asinkron yang perlu ditangani secara berurutan.
+
+---
+
