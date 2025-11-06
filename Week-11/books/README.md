@@ -104,6 +104,8 @@ Berikut hasil outputnya:
 
 <img src="images/W11_Soal14.gif" width="300"> 
 
+---
+
 ## Praktikum 8 - Navigation route dengan Future Function
 
 Pada Praktikum ini kita tambahkan kode untuk menampilkan dua layar Flutter yang saling terhubung menggunakan **Navigator** untuk berpindah halaman dan mengirimkan data balik. Pada layar pertama (`NavigationFirst`), terdapat tombol **“Change Color”** yang ketika ditekan akan membuka layar kedua (`NavigationSecond`). Di layar kedua, pengguna dapat memilih salah satu dari tiga tombol warna (Red, Green, atau Blue); ketika salah satu ditekan, fungsi `Navigator.pop(context, color)` dijalankan untuk **menutup halaman kedua dan mengirimkan nilai warna yang dipilih kembali ke halaman pertama**. Setelah itu, nilai warna tersebut diterima melalui `await Navigator.push(...)` dan disimpan ke variabel `color`, lalu `setState()` dijalankan untuk memperbarui tampilan layar pertama. Akibatnya, setiap kali tombol di layar kedua diklik, **background color** layar pertama berubah sesuai warna yang dipilih, karena proses navigasi sekaligus pengembalian data berhasil dilakukan melalui mekanisme asynchronous `Navigator.push` dan `Navigator.pop`.
@@ -111,3 +113,15 @@ Pada Praktikum ini kita tambahkan kode untuk menampilkan dua layar Flutter yang 
 Berikut hasil outputnya: 
 
 <img src="images/W11_Soal16.gif" width="300"> 
+
+---
+
+## Praktikum 9 - Memanfaatkan async/await dengan Widget Dialog
+
+Kita tambahkan kode untuk menampilkan sebuah layar dengan tombol **“Change Color”** yang saat ditekan akan memunculkan **dialog (AlertDialog)** berisi tiga pilihan warna: Red, Green, dan Blue. Dialog ini muncul melalui fungsi `showDialog()` yang bersifat asynchronous dan menunggu pengguna memilih salah satu opsi. Setiap tombol dalam dialog memanggil `Navigator.pop(context, warna)` untuk **menutup dialog sekaligus mengirimkan nilai warna yang dipilih kembali** ke fungsi pemanggil. Nilai tersebut kemudian disimpan ke variabel `color` di dalam `setState()`, sehingga **warna latar belakang layar utama berubah sesuai warna tombol yang diklik**. Jadi, ketika kamu menekan tombol Red, Green, atau Blue, dialog tertutup dan background halaman berubah ke warna yang dipilih, karena hasil dari dialog dikembalikan dan memperbarui state widget.
+
+Berikut output:
+
+<img src="images/W11_Soal17.gif" width="300"> 
+
+---
