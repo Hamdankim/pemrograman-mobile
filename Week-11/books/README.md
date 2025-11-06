@@ -80,3 +80,10 @@ Langkah selanjutnya kita menambahkan fungsi `handleError`. Perbedaannya terletak
 
 ---
 
+## Praktikum 6 – Menggunakan Future dengan StatefulWidget
+
+Pertama kita membuat file `geolocation.dart` yang menampilkan lokasi pengguna menggunakan package **Geolocator**. Di dalamnya, fungsi `getPosition()` meminta izin akses lokasi, memeriksa apakah layanan lokasi aktif, lalu mengambil posisi terkini berupa **latitude** dan **longitude**. Nilai tersebut ditampilkan pada layar setelah proses selesai, sementara sebelum itu muncul indikator loading. Namun, ketika dijalankan di **browser**, aplikasi tidak akan mendapatkan koordinat GPS sebenarnya karena browser tidak memiliki akses langsung ke perangkat keras GPS seperti halnya di perangkat Android atau iOS. Pada web, Geolocator hanya dapat menggunakan lokasi berbasis IP atau izin lokasi browser, sehingga akurasi dan ketersediaannya sangat terbatas.
+
+Berikut hasil output dari praktikum diatas:
+
+<img src="images/W11_Soal12.gif" width="300"> <br>
