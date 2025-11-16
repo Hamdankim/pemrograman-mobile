@@ -65,3 +65,13 @@ Hal itu terjadi karena stream angka yang digunakan diubah menjadi **broadcast st
 Pada langkah 3, kode dalam `stream.dart` membuat kelas `NumberStream` yang menghasilkan aliran data (stream) berupa angka acak setiap satu detik menggunakan `Stream.periodic`, sehingga setiap detik stream memancarkan nilai baru tanpa perlu dipicu oleh tombol. Sementara pada langkah 7, method `build()` menampilkan hasil stream tersebut di UI: variabel `lastNumber` diperbarui oleh listener dan ditampilkan sebagai teks, sedangkan `StreamBuilder` memantau stream secara langsung dan memperbarui tampilan setiap kali data baru masuk, sehingga angka yang dihasilkan stream terlihat secara real-time; tombol **New Random Number** tetap disediakan jika stream menggunakan controller manual, tetapi fungsi utamanya di sini adalah menampilkan data stream secara otomatis dan responsif di antarmuka.
 
 <img src="streambuilder_hamdan/images/Soal12.gif" width="300">
+
+---
+
+## Praktikum 7 – BLoC Pattern
+
+Praktikum ini bertujuan untuk memperkenalkan konsep dasar pola **BLoC (Business Logic Component)** di Flutter, yaitu memisahkan logika aplikasi dari tampilan UI agar kode menjadi lebih bersih, terstruktur, dan mudah diuji. Dalam contoh ini, logika untuk menghasilkan angka acak ditempatkan di dalam `RandomNumberBloc`, yang mengelola aliran data menggunakan **StreamController**, sementara UI di `RandomScreen` hanya mendengarkan perubahan data melalui `StreamBuilder` tanpa mengetahui cara angka itu dibuat. Konsep BLoC terlihat pada penggunaan **sink** (`generateRandom`) untuk menerima event dari UI dan **stream** (`randomNumber`) untuk mengirim state kembali ke UI, sehingga tercipta alur *event → processing → state* yang merupakan ciri khas pola BLoC.
+
+<img src="bloc_random_hamdan/images/Soal13.gif" width="300">
+
+---
