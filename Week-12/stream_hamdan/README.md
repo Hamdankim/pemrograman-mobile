@@ -37,3 +37,27 @@ Langkah 13 sampai 15 bertujuan untuk menambahkan **simulasi error dan penanganan
 Kode tersebut mendeklarasikan dan menginisialisasi `StreamTransformer` yang memproses data dari *stream* dengan mengalikan setiap nilai masuk dengan 10 serta mengganti error menjadi `-1`, lalu menerapkan transformer tersebut pada *stream* angka sehingga setiap data hasil transformasi digunakan untuk memperbarui nilai `lastNumber` melalui `setState`, memungkinkan UI Flutter berubah secara real-time sesuai data *stream* yang diterima.
 
 <img src="images/Soal8.gif" width="300">
+
+---
+
+## Praktikum 4 – Subscribe ke stream events
+
+Pada **langkah 2**, kode menginisialisasi `StreamSubscription` melalui `stream.listen()` untuk mulai mendengarkan setiap event yang dikirimkan oleh `StreamController`, lalu memperbarui UI dengan nilai terbaru atau menampilkan `-1` bila terjadi error; fitur `onDone` juga disiapkan agar mengetahui kapan stream berhenti. Pada **langkah 6**, method `dispose()` menutup `StreamController` dan membatalkan `StreamSubscription` menggunakan `subscription.cancel()`, yang merupakan praktik terbaik untuk mencegah memory leak dan memastikan tidak ada event yang masih berjalan setelah widget dihapus. Pada **langkah 8**, method `addRandomNumber()` diperbarui agar hanya menambah data ke stream jika `StreamController` belum ditutup; jika stream sudah berhenti, UI akan di-set ke `-1` sebagai penanda bahwa stream tidak lagi menerima input.
+
+<img src="images/Soal9.gif" width="300">
+
+<img src="images/Soal9a.png" width="300">
+
+---
+
+## Praktikum 5 – Multiple stream subscriptions
+
+Error **“Bad state: Stream has already been listened to”** terjadi karena pada kode Anda, *stream* yang berasal dari `numberStreamController.stream` adalah **single-subscription stream**, tetapi Anda mencoba mendengarkannya **dua kali** melalui `subscription = stream.listen(...)` dan `subscription2 = stream.listen(...)`; sementara tipe stream ini **hanya boleh memiliki satu listener aktif**, sehingga ketika listener kedua ditambahkan, Flutter langsung melempar error tersebut sebagai proteksi agar stream tidak digunakan melebihi kapasitas yang diizinkan.
+
+Hal itu terjadi karena stream angka yang digunakan diubah menjadi **broadcast stream**, sehingga bisa memiliki lebih dari satu listener, dan pada kode tersebut memang dibuat **dua subscription** (`subscription` dan `subscription2`) yang keduanya mendengarkan stream yang sama. Setiap kali tombol ditekan dan angka dikirim ke stream, kedua listener menerima event tersebut secara terpisah dan masing-masing mengeksekusi `setState()` yang menambahkan angka ke variabel `values`. Akibatnya, setiap angka yang dipancarkan stream dicatat **dua kali**, satu dari setiap subscription, sehingga teks angka bertambah dua kali lipat.
+
+<img src="images/Soal11.gif" width="300">
+
+---
+
+## Praktikum 6 – Multiple stream subscriptions

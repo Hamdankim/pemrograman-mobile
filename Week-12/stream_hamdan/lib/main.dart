@@ -12,7 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: StreamHomePage());
+    return const MaterialApp(
+      home: StreamHomePage(),
+    );
   }
 }
 
@@ -28,7 +30,11 @@ class _StreamHomePageState extends State<StreamHomePage> {
 
   late NumberStream numberStream;
   late StreamController<int> numberStreamController;
-  late StreamTransformer<int, int> transformer;
+
+  late StreamSubscription subscription;
+  late StreamSubscription subscription2;
+
+  String values = "";
 
   Color bgColor = Colors.blueGrey;
   late ColorStream colorStream;
@@ -37,37 +43,35 @@ class _StreamHomePageState extends State<StreamHomePage> {
   void initState() {
     super.initState();
 
-    // Stream Transformer
-    transformer = StreamTransformer<int, int>.fromHandlers(
-      handleData: (value, sink) {
-        sink.add(value * 10);
-      },
-      handleError: (error, trace, sink) {
-        sink.add(-1);
-      },
-      handleDone: (sink) => sink.close(),
-    );
-
-    // Inisialisasi stream angka
     numberStream = NumberStream();
     numberStreamController = numberStream.controller;
 
-    numberStreamController.stream
-        .transform(transformer)
-        .listen(
-          (event) {
-            setState(() {
-              lastNumber = event;
-            });
-          },
-          onError: (error) {
-            setState(() {
-              lastNumber = -1;
-            });
-          },
-        );
+    /// Mengubah stream menjadi broadcast agar bisa banyak listener
+    Stream stream = numberStreamController.stream.asBroadcastStream();
 
-    // Inisialisasi stream warna
+    subscription = stream.listen((event) {
+      setState(() {
+        values += '$event - ';
+      });
+    });
+
+    subscription2 = stream.listen((event) {
+      setState(() {
+        values += '$event - ';
+      });
+    });
+
+    subscription.onError((error) {
+      setState(() {
+        lastNumber = -1;
+      });
+    });
+
+    subscription.onDone(() {
+      print("onDone was called");
+    });
+
+    // Init stream warna
     colorStream = ColorStream();
     changeColor();
   }
@@ -82,13 +86,25 @@ class _StreamHomePageState extends State<StreamHomePage> {
 
   void addRandomNumber() {
     Random random = Random();
-    int value = random.nextInt(10);
-    numberStream.addNumberToSink(value);
-    // numberStream.addError();
+    int myNum = random.nextInt(10);
+
+    if (!numberStreamController.isClosed) {
+      numberStream.addNumberToSink(myNum);
+    } else {
+      setState(() {
+        lastNumber = -1;
+      });
+    }
+  }
+
+  void stopStream() {
+    numberStreamController.close();
   }
 
   @override
   void dispose() {
+    subscription.cancel();
+    subscription2.cancel();
     numberStreamController.close();
     super.dispose();
   }
@@ -100,6 +116,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
       body: Container(
         width: double.infinity,
         color: bgColor,
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -107,10 +124,28 @@ class _StreamHomePageState extends State<StreamHomePage> {
               lastNumber.toString(),
               style: const TextStyle(fontSize: 40, color: Colors.white),
             ),
+
             const SizedBox(height: 20),
+
+            /// Menampilkan values agar bisa dilihat
+            Text(
+              values,
+              style: const TextStyle(color: Colors.white, fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
+
+            const SizedBox(height: 20),
+
             ElevatedButton(
               onPressed: addRandomNumber,
               child: const Text("New Random Number"),
+            ),
+
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: stopStream,
+              child: const Text("Stop Subscription"),
             ),
           ],
         ),
