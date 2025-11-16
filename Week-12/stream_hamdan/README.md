@@ -8,12 +8,24 @@
 
 ## Praktikum 1 – Dart Streams
 
-Pada Praktikum 1, kita mempelajari struktur dasar aplikasi Flutter, dimulai dari fungsi `void main()` yang menjalankan aplikasi melalui `runApp()` dan menampilkan widget utama `MyApp`. Widget `MyApp` sebagai StatelessWidget digunakan untuk mengonfigurasi aplikasi menggunakan `MaterialApp`, termasuk menentukan judul dan tema tampilan seperti `primarySwatch: Colors.deepPurple`. Selanjutnya, halaman awal aplikasi ditetapkan pada `StreamHomePage`, yang merupakan StatefulWidget sehingga mampu menyimpan dan mengubah state. Pengolahan state dilakukan di kelas `_StreamHomePageState`, yang nantinya akan kita kembangkan untuk membuat antarmuka aplikasi yang interaktif dan dinamis.
+Pada Praktikum 1, kita mempelajari struktur dasar aplikasi Flutter, mulai dari main() yang menjalankan runApp(), lalu MyApp sebagai StatelessWidget untuk mengatur konfigurasi aplikasi melalui MaterialApp, dan StreamHomePage sebagai StatefulWidget yang mengelola state melalui kelas _StreamHomePageState.
 
-Keyword `yield*` pada kode tersebut berfungsi untuk meneruskan (delegate) seluruh data yang dihasilkan oleh sebuah stream lain ke dalam stream yang sedang dibuat, sehingga setiap nilai yang diproduksi oleh `Stream.periodic` langsung dialirkan ke stream utama tanpa perlu ditangani satu per satu. Pada kode tersebut, `Stream.periodic` menghasilkan nilai baru setiap satu detik, lalu fungsi `(int t)` digunakan untuk menentukan indeks warna dengan melakukan operasi `t % colors.length`, sehingga stream akan mengeluarkan warna secara berurutan dan berulang berdasarkan daftar `colors`.
+Keyword yield* digunakan untuk meneruskan seluruh data dari stream lain ke stream utama, sehingga nilai yang dihasilkan Stream.periodic setiap detik dapat langsung diteruskan untuk menampilkan warna secara berurutan dari daftar colors.
 
 Berikut ouput:
 
 <img src="images/Soal4.gif" width="300">
 
-Perbedaan penggunaan **`listen()`** dan **`await for`** pada langkah 9 terletak pada cara keduanya menangani aliran data dari sebuah stream. Ketika menggunakan **`listen()`**, kita mendaftarkan sebuah *callback* yang akan dipanggil setiap kali stream mengirimkan data baru; cara ini bersifat non-blocking, artinya fungsi `changeColor()` akan langsung selesai dieksekusi sementara listener tetap aktif menerima data secara asinkron di belakang layar. Sementara itu, penggunaan **`await for`** membuat fungsi tersebut “menunggu” setiap nilai yang keluar dari stream secara berurutan; fungsi tidak akan selesai sampai stream selesai menghasilkan data (blocking secara asinkron dalam konteks function). Dengan kata lain, **`listen()`** lebih fleksibel untuk penanganan event jangka panjang, sedangkan **`await for`** cocok ketika kita ingin memproses stream secara berurutan dan menunggu sampai seluruh data selesai diproses.
+Perbedaan listen() dan await for terletak pada cara menangani stream: listen() bersifat non-blocking dan langsung menjalankan callback setiap data diterima, sedangkan await for memproses data secara berurutan dan menunggu stream hingga selesai sehingga cocok untuk alur yang membutuhkan urutan.
+
+---
+
+## Praktikum 2 – Stream controllers dan sinks
+
+Pada Praktikum 2, kita menambahkan fitur stream angka yang memungkinkan aplikasi menghasilkan dan menampilkan angka acak secara real time menggunakan `NumberStream` dan `StreamController`. Perubahannya meliputi inisialisasi stream angka di `initState()`, mendengarkan aliran data menggunakan `listen()` untuk memperbarui nilai `lastNumber`, serta membuat fungsi `addRandomNumber()` yang mengirim angka baru ke stream. Selain itu, kita juga menambahkan penanganan lifecycle dengan menutup stream pada `dispose()` agar tidak terjadi kebocoran memori. Dengan perubahan ini, aplikasi tidak hanya mengganti warna background secara periodik, tetapi juga mampu memproses input angka secara dinamis melalui mekanisme stream.
+
+Berikut ouput:
+
+<img src="images/Soal6.gif" width="300">
+
+Langkah 13 sampai 15 bertujuan untuk menambahkan **simulasi error dan penanganannya di dalam Stream**, sehingga aplikasi dapat merespons kesalahan ketika terjadi error pada aliran data. Pada **Langkah 13**, method `addError()` ditambahkan ke dalam `NumberStream` untuk mengirimkan error ke stream melalui `controller.sink.addError('error')`, bukan data biasa. Pada **Langkah 14**, kita menambahkan `onError()` pada `listen()` di `initState()`, sehingga ketika stream menerima error, aplikasi akan menangani kondisi tersebut—misalnya dengan mengubah `lastNumber` menjadi `-1` untuk memberi sinyal bahwa terjadi kesalahan. Pada **Langkah 15**, method `addRandomNumber()` diubah agar tidak lagi mengirim angka acak, tetapi memicu error dengan memanggil `numberStream.addError()`. Dengan ketiga langkah ini, praktikum menunjukkan bagaimana stream dapat mengirim error, bagaimana listener menangkapnya, dan bagaimana aplikasi menampilkan perubahan state ketika error terjadi.

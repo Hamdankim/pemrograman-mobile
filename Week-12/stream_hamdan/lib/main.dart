@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'stream.dart';
+import 'dart:async';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -10,9 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const StreamHomePage(),
-    );
+    return const MaterialApp(home: StreamHomePage());
   }
 }
 
@@ -24,23 +24,38 @@ class StreamHomePage extends StatefulWidget {
 }
 
 class _StreamHomePageState extends State<StreamHomePage> {
+  int lastNumber = 0;
+
+  late NumberStream numberStream;
+  late StreamController numberStreamController;
+
   Color bgColor = Colors.blueGrey;
   late ColorStream colorStream;
 
   @override
   void initState() {
     super.initState();
+
+    // Inisialisasi stream angka
+    numberStream = NumberStream();
+    numberStreamController = numberStream.controller;
+
+    numberStreamController.stream.listen((event) {
+      setState(() {
+        lastNumber = event;
+      });
+    }).onError((error) {
+      setState(() {
+        lastNumber = -1;
+      });
+    });
+
+    // Inisialisasi stream warna
     colorStream = ColorStream();
     changeColor();
   }
 
-  void changeColor() async {
-    // await for (var eventColor in colorStream.getColors()) {
-    //   setState(() {
-    //     bgColor = eventColor;
-    //   });
-    // }
-
+  void changeColor() {
     colorStream.getColors().listen((eventColor) {
       setState(() {
         bgColor = eventColor;
@@ -48,15 +63,39 @@ class _StreamHomePageState extends State<StreamHomePage> {
     });
   }
 
+  void addRandomNumber() {
+    Random random = Random();
+    int value = random.nextInt(10);
+    numberStream.addNumberToSink(value);
+    // numberStream.addError();
+  }
+
+  @override
+  void dispose() {
+    numberStreamController.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Stream Hamdan'),
-      ),
+      appBar: AppBar(title: const Text('Stream Praktikum')),
       body: Container(
-        decoration: BoxDecoration(
-          color: bgColor,
+        width: double.infinity,
+        color: bgColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              lastNumber.toString(),
+              style: const TextStyle(fontSize: 40, color: Colors.white),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: addRandomNumber,
+              child: const Text("New Random Number"),
+            ),
+          ],
         ),
       ),
     );
