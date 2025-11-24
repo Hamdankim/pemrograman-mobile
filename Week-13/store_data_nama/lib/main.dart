@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'model/pizza.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,52 +32,67 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Pizza> myPizzas = [];
   int appCounter = 0;
   bool showList = true;
+  String documentsPath = '';
+  String tempPath = '';
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     appBar: AppBar(
+  //       title: const Text('JSON Hamdan'),
+  //       actions: [
+  //         IconButton(
+  //           tooltip: showList ? 'Tampilkan Counter' : 'Tampilkan List',
+  //           onPressed: () => setState(() => showList = !showList),
+  //           icon: Icon(showList ? Icons.list : Icons.countertops),
+  //         ),
+  //         IconButton(
+  //           tooltip: 'Reset Counter',
+  //           onPressed: resetCounter,
+  //           icon: const Icon(Icons.refresh),
+  //         ),
+  //       ],
+  //     ),
+  //     body: showList
+  //         ? myPizzas.isEmpty
+  //               ? const Center(child: CircularProgressIndicator())
+  //               : ListView.builder(
+  //                   itemCount: myPizzas.length,
+  //                   itemBuilder: (context, index) {
+  //                     final p = myPizzas[index];
+  //                     return ListTile(
+  //                       title: Text(p.pizzaName),
+  //                       subtitle: Text(p.description),
+  //                       trailing: Text(p.price.toStringAsFixed(2)),
+  //                     );
+  //                   },
+  //                 )
+  //         : Center(
+  //             child: Column(
+  //               mainAxisSize: MainAxisSize.min,
+  //               children: [
+  //                 Text('You have opened the app $appCounter times.'),
+  //                 const SizedBox(height: 12),
+  //                 ElevatedButton(
+  //                   onPressed: () => deletePreferences(),
+  //                   child: const Text('Reset counter'),
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //   );
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('JSON Hamdan'),
-        actions: [
-          IconButton(
-            tooltip: showList ? 'Tampilkan Counter' : 'Tampilkan List',
-            onPressed: () => setState(() => showList = !showList),
-            icon: Icon(showList ? Icons.list : Icons.countertops),
-          ),
-          IconButton(
-            tooltip: 'Reset Counter',
-            onPressed: resetCounter,
-            icon: const Icon(Icons.refresh),
-          ),
+      appBar: AppBar(title: const Text('Path Provider Hamdan')),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text('Doc path: $documentsPath'),
+          Text('Temp path $tempPath'),
         ],
       ),
-      body: showList
-          ? myPizzas.isEmpty
-                ? const Center(child: CircularProgressIndicator())
-                : ListView.builder(
-                    itemCount: myPizzas.length,
-                    itemBuilder: (context, index) {
-                      final p = myPizzas[index];
-                      return ListTile(
-                        title: Text(p.pizzaName),
-                        subtitle: Text(p.description),
-                        trailing: Text(p.price.toStringAsFixed(2)),
-                      );
-                    },
-                  )
-          : Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('You have opened the app $appCounter times.'),
-                  const SizedBox(height: 12),
-                  ElevatedButton(
-                    onPressed: () => deletePreferences(),
-                    child: const Text('Reset counter'),
-                  ),
-                ],
-              ),
-            ),
     );
   }
 
@@ -116,13 +132,23 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() => appCounter = 0);
   }
 
+  Future getPaths() async {
+    final docsDir = await getApplicationDocumentsDirectory();
+    final tempDir = await getTemporaryDirectory();
+    setState(() {
+      documentsPath = docsDir.path;
+      tempPath = tempDir.path;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-    readAndWritePreferences();
-    readJsonFile().then((value) {
-      if (!mounted) return;
-      setState(() => myPizzas = value);
-    });
+    // readAndWritePreferences();
+    // readJsonFile().then((value) {
+    //   if (!mounted) return;
+    //   setState(() => myPizzas = value);
+    // });
+    getPaths();
   }
 }
