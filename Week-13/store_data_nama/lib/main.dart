@@ -1,8 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'model/pizza.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
+// import 'dart:convert'; // (Dikomentari: hanya perlu untuk fitur JSON pizza)
+// import 'package:shared_preferences/shared_preferences.dart'; // (Dikomentari: hanya perlu untuk counter)
+// import 'model/pizza.dart'; // (Dikomentari: halaman pizza tidak ditampilkan)
 
 void main() {
   runApp(const MyApp());
@@ -29,11 +30,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Pizza> myPizzas = [];
-  int appCounter = 0;
-  bool showList = true;
+  // =============== PATH PROVIDER STATE ===============
   String documentsPath = '';
   String tempPath = '';
+  late File myFile;
+  String fileText = '';
+
+  // =============== (Dikomentari) PIZZA & COUNTER FEATURE ===============
+  // List<Pizza> myPizzas = [];
+  // bool showList = true;
+  // int appCounter = 0; // counter shared preferences
 
   // @override
   // Widget build(BuildContext context) {
@@ -86,69 +92,131 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Path Provider Hamdan')),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: _buildPathProviderPage(),
+    );
+  }
+
+  // Halaman utama yang diminta: hanya Path Provider + operasi file
+  Widget _buildPathProviderPage() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Doc path: $documentsPath'),
-          Text('Temp path $tempPath'),
+          const Text(
+            'Path Provider Demo',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 12),
+          Text('Documents path: $documentsPath'),
+          Text('Temp path: $tempPath'),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              ElevatedButton(
+                onPressed: readFile,
+                child: const Text('Read File'),
+              ),
+              const SizedBox(width: 12),
+              ElevatedButton(
+                onPressed: writeFile,
+                child: const Text('Write File'),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Text('File content:'),
+          const SizedBox(height: 8),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey.shade400),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Text(
+              fileText.isEmpty ? '(File kosong / belum dibaca)' : fileText,
+            ),
+          ),
+          const SizedBox(height: 32),
+          // ========== Bagian fitur lain dikomentari ==========
+          const Text(
+            'Fitur lain (Pizza / Counter) sedang dinonaktifkan.',
+            style: TextStyle(color: Colors.grey),
+          ),
         ],
       ),
     );
   }
 
-  Future<List<Pizza>> readJsonFile() async {
-    final raw = await DefaultAssetBundle.of(
-      context,
-    ).loadString('assets/pizzalist.json');
-    final List<dynamic> decoded = jsonDecode(raw) as List<dynamic>;
-    final pizzas = decoded
-        .map((e) => Pizza.fromJson(e as Map<String, dynamic>))
-        .toList();
-    // Debug print JSON normal (list of objects)
-    debugPrint(convertToJson(pizzas));
-    return pizzas;
-  }
+  // Widget lama (Pizza & Counter) dikomentari:
+  // Widget _buildPizzaListOrLoader() { ... }
+  // Widget _buildCounterAndPaths() { ... }
 
-  String convertToJson(List<Pizza> pizzas) {
-    return jsonEncode(pizzas.map((p) => p.toJson()).toList());
-  }
+  // Future<List<Pizza>> readJsonFile() async { ... } (Dikomentari)
+  // String convertToJson(List<Pizza> pizzas) { ... } (Dikomentari)
 
-  Future readAndWritePreferences() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final current = (prefs.getInt('appCounter') ?? 0) + 1;
-    await prefs.setInt('appCounter', current);
-    setState(() => appCounter = current);
-  }
+  // Future<void> readAndWritePreferences() async { ... } (Dikomentari)
+  // Future<void> resetCounter() async { ... } (Dikomentari)
+  // Future<void> deletePreferences() async { ... } (Dikomentari)
 
-  Future<void> resetCounter() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('appCounter', 0);
-    setState(() => appCounter = 0);
-  }
-
-  Future deletePreferences() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
-    setState(() => appCounter = 0);
-  }
-
-  Future getPaths() async {
+  Future<void> getPaths() async {
     final docsDir = await getApplicationDocumentsDirectory();
     final tempDir = await getTemporaryDirectory();
-    setState(() {
-      documentsPath = docsDir.path;
-      tempPath = tempDir.path;
-    });
+    if (mounted) {
+      setState(() {
+        documentsPath = docsDir.path;
+        tempPath = tempDir.path;
+      });
+    }
+  }
+
+  Future<bool> writeFile() async {
+    try {
+      if (!myFile.existsSync()) {
+        myFile.createSync(recursive: true);
+      }
+      await myFile.writeAsString('Margherita, Capricciosa, Napoli');
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // readAndWritePreferences();
+  //   // readJsonFile().then((value) {
+  //   //   if (!mounted) return;
+  //   //   setState(() => myPizzas = value);
+  //   // });
+  //   getPaths();
+  // }
+
+  Future<bool> readFile() async {
+    try {
+      if (!myFile.existsSync()) {
+        return false;
+      }
+      final fileContent = await myFile.readAsString();
+      if (mounted) setState(() => fileText = fileContent);
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    // readAndWritePreferences();
-    // readJsonFile().then((value) {
-    //   if (!mounted) return;
-    //   setState(() => myPizzas = value);
-    // });
-    getPaths();
+    _initAsync();
+  }
+
+  Future<void> _initAsync() async {
+    await getPaths();
+    myFile = File('$documentsPath/pizzas.txt');
+    await writeFile();
+    // Fitur lain (pizza & counter) dinonaktifkan.
   }
 }
